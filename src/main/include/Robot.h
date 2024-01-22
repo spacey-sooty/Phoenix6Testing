@@ -23,5 +23,5 @@ class Robot : public frc::TimedRobot {
  private:
   ctre::phoenix6::hardware::TalonFX* m_motor;
   ctre::phoenix6::hardware::CANcoder* m_encoder;
-  frc::PIDController* m_pid;
+  //frc::PIDController* m_pid;
 };
