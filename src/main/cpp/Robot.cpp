@@ -1,8 +1,8 @@
 #include "Robot.h"
 
 void Robot::RobotInit() {
-  m_motor = new ctre::phoenix6::hardware::TalonFX(99, "Drivebase");
-  m_encoder = new ctre::phoenix6::hardware::CANcoder(99, "Drivebase");
+  m_motor = new ctre::phoenix6::hardware::TalonFX(7, "Drivebase");
+  m_encoder = new ctre::phoenix6::hardware::CANcoder(16, "Drivebase");
   m_pid = new frc::PIDController(0.022, 0, 0);
 }
 void Robot::RobotPeriodic() {}
