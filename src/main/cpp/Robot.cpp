@@ -6,6 +6,7 @@ static double preverror = 0;
 void Robot::RobotInit() {
   m_motor = new ctre::phoenix6::hardware::TalonFX(7, "Drivebase");
   m_encoder = new ctre::phoenix6::hardware::CANcoder(16, "Drivebase");
+  m_table = nt::NetworkTableInstance::GetDefault().GetTable("/pid");
   //m_pid = new frc::PIDController(0.022, 0, 0);
 }
 void Robot::RobotPeriodic() {}
@@ -23,6 +24,13 @@ void Robot::TeleopPeriodic() {
   double deriv = error - preverror / dt;
   double sum = error * dt;
   double output = 0.001 * error + 0 * sum + 0 * deriv + 0.1 * input;
+  m_table->PutNumber("error", error);
+  m_table->PutNumber("dt", dt);
+  m_table->PutNumber("input", input);
+  m_table->PutNumber("deriv", deriv);
+  m_table->PutNumber("sum", sum);
+  m_table->PutNumber("output", output);
+  m_table->PutNumber("setpoint", setpoint);
   m_motor->SetVoltage(units::volt_t{output});
 
   //m_pid->SetSetpoint(60);
