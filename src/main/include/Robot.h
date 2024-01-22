@@ -4,6 +4,9 @@
 #include <frc/controller/PIDController.h>
 #include <ctre/phoenix6/TalonFX.hpp>
 #include <ctre/phoenix6/CANcoder.hpp>
+#include <memory>
+#include <networktables/NetworkTableInstance.h>
+#include <networktables/NetworkTable.h>
 
 class Robot : public frc::TimedRobot {
  public:
@@ -24,4 +27,5 @@ class Robot : public frc::TimedRobot {
   ctre::phoenix6::hardware::TalonFX* m_motor;
   ctre::phoenix6::hardware::CANcoder* m_encoder;
   frc::PIDController* m_pid;
+  std::shared_ptr<nt::NetworkTable> m_table;
 };
